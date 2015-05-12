@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowNullReference
@@ -9,7 +8,6 @@ namespace SpecFlowNullReference
     {
         private const string Key = "SomeKey";
         private object value;
-        private NullReferenceException exception;
 
         [Given(@"I set null value to ScenarioContext")]
         public void GivenISetNullValueToScenarioContext()
