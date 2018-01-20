@@ -7,18 +7,27 @@ namespace SpecFlowNullReference
     public class NullReferenceSteps
     {
         private const string Key = "SomeKey";
+        private const string IsNullKey = Key + "isNull";
         private object value;
 
         [Given(@"I set null value to ScenarioContext")]
         public void GivenISetNullValueToScenarioContext()
         {
-            ScenarioContext.Current.Set<object>(null, Key);
+            string theValue = null;
+            ScenarioContext.Current.Set<object>(theValue, Key);
+            ScenarioContext.Current.Set<object>(theValue==null, IsNullKey);
         }
 
         [When(@"I get value from ScenarioContext")]
         public void WhenIGetValueFromScenarioContext()
         {
-            value = ScenarioContext.Current.Get<object>(Key);
+            var keyIsnull = ScenarioContext.Current.Get<bool>(IsNullKey);
+
+            if (keyIsnull)
+                value = null;
+            else 
+                value = ScenarioContext.Current.Get<object>(Key);
+            
         }
 
         [Then(@"the value should be null")]
